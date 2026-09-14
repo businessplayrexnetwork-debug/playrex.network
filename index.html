@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Playrex Network | Demo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07080d;color:#f7f7fb;font:15px Inter,system-ui,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1160px,92%);margin:auto}.nav{position:sticky;top:0;z-index:10;background:#07080ddd;backdrop-filter:blur(15px);border-bottom:1px solid #ffffff12}.navin{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:10px;align-items:center;font-weight:900}.brand img{width:40px;height:40px;border-radius:10px;object-fit:cover}.navlinks{display:flex;gap:20px;color:#adb3c5;font-size:13px}.btn{border:0;border-radius:11px;padding:12px 17px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:white;font-weight:800;cursor:pointer;transition:.25s}.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px #7c3aed44}.btn.alt{background:#ffffff0a;border:1px solid #ffffff12}.hero{padding:75px 0 70px}.heroGrid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.eyebrow{color:#bba5ff;text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:.14em}.hero h1{font-size:clamp(46px,6vw,76px);line-height:.98;letter-spacing:-.06em;margin:15px 0}.hero h1 span{color:#a78bfa}.hero p{color:#9ba3b8;font-size:17px;line-height:1.7;max-width:600px}.hero img{width:100%;border-radius:23px;border:1px solid #ffffff14;animation:float 5s ease-in-out infinite;box-shadow:0 30px 80px #000}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}@keyframes float{50%{transform:translateY(-9px)}}section{padding:70px 0}.head{margin-bottom:28px}.head h2{font-size:35px;margin:8px 0}.muted{color:#9ba3b8;line-height:1.65}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.stat,.card{border:1px solid #ffffff10;background:#10121b;border-radius:20px}.stat{aspect-ratio:1;padding:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.3s}.stat:hover{transform:translateY(-7px) scale(1.02);border-color:#a78bfa66}.stat b{font-size:31px}.stat span{color:#9ba3b8;font-size:12px;margin-top:5px}.games{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.game{overflow:hidden}.game img{width:100%;height:190px;object-fit:cover;display:block}.game .body{padding:16px}.game h3{margin:0 0 5px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tour,.news{padding:20px}.badge{display:inline-block;padding:6px 9px;border-radius:99px;background:#22d3ee16;color:#7eeaf7;border:1px solid #22d3ee33;font-size:10px;font-weight:900;text-transform:uppercase}.tour h3,.news h3{margin:12px 0 7px}.meta{display:flex;gap:7px;flex-wrap:wrap;margin:15px 0}.meta span{border:1px solid #ffffff10;border-radius:8px;padding:6px 8px;color:#9ba3b8;font-size:11px}.organizer{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form{display:grid;gap:10px}.input{width:100%;padding:13px;border-radius:11px;border:1px solid #ffffff14;background:#080a10;color:white;outline:none}.input:focus{border-color:#8b5cf6}.admin{display:none}.admin.show{display:block}.row{display:flex;gap:8px;flex-wrap:wrap}.faq{display:grid;gap:10px;max-width:900px}.faq details{background:#10121b;border:1px solid #ffffff10;border-radius:15px;padding:17px 19px}.faq summary{cursor:pointer;font-weight:750}.faq p{color:#9ba3b8;line-height:1.6;margin-bottom:2px}footer{border-top:1px solid #ffffff10;padding:30px 0;color:#737b91}@media(max-width:800px){.heroGrid,.organizer{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.games,.grid3{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}}@media(max-width:500px){.games,.grid3{grid-template-columns:1fr}.hero{padding-top:45px}}
+
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:100;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modalBox{width:min(430px,100%);background:#11141f;border:1px solid #ffffff18;border-radius:22px;padding:28px;position:relative;box-shadow:0 30px 100px #000}.close{position:absolute;right:15px;top:12px;background:none;border:0;color:#aaa;font-size:28px;cursor:pointer}.statusApproved{color:#86efac}.statusRejected{color:#fca5a5}.statusPending{color:#fde68a}
+</style></head><body>
+<nav class="nav"><div class="wrap navin"><a class="brand" href="#"><img src="assets/playrex-logo.jpg">PLAYREX NETWORK</a><div class="navlinks"><a href="#games">Games</a><a href="#tournaments">Tournaments</a><a href="#news">News</a><a href="#organizer">Organizer</a><a href="#faq">FAQ</a></div><div class="row"><button class="btn alt" onclick="openLogin()">Login</button><button class="btn" onclick="showAdmin()">Admin</button></div></div></nav>
+
+<header class="hero"><div class="wrap heroGrid"><div><div class="eyebrow">Gaming • Esports • Community</div><h1>Play. Compete.<br><span>Become Legendary.</span></h1><p>Playrex Network connects gamers and verified tournament organizers in one competitive gaming community.</p><div class="actions"><a class="btn" href="#tournaments">View Tournaments</a><a class="btn alt" href="#organizer">Become Organizer</a></div></div><img src="assets/playrex-network-banner.jpg" alt="Playrex Network"></div></header>
+
+<section><div class="wrap"><div class="head"><div class="eyebrow">The network</div><h2>Built for the community</h2></div><div class="stats">
+<div class="stat"><b>500K+</b><span>Players</span></div>
+<div class="stat"><b>10K+</b><span>Communities</span></div>
+<div class="stat"><b>165+</b><span>Tournaments</span></div>
+<div class="stat"><b>15K+</b><span>Active Users</span></div>
+</div></div></section>
+
+<section id="games"><div class="wrap"><div class="head"><div class="eyebrow">Games</div><h2>Play your game</h2></div><div class="games">
+<div class="card game"><img src="assets/scarfall-2.webp"><div class="body"><h3>ScarFall 2.0</h3><div class="muted">Battle royale</div></div></div>
+<div class="card game"><img src="assets/mobile-legends.png"><div class="body"><h3>Mobile Legends: Bang Bang</h3><div class="muted">MOBA</div></div></div>
+<div class="card game"><img src="assets/bgmi.jpg"><div class="body"><h3>BGMI</h3><div class="muted">Battle royale</div></div></div>
+<div class="card game"><img src="assets/free-fire-max.jpg"><div class="body"><h3>Free Fire MAX</h3><div class="muted">Battle royale</div></div></div>
+</div></div></section>
+
+<section id="tournaments"><div class="wrap"><div class="head"><div class="eyebrow">Verified events</div><h2>Tournament Showcase</h2><p class="muted">Approve an application in Admin Demo and its tournament will appear here automatically.</p></div><div id="tournamentList" class="grid3"></div></div></section>
+
+<section id="news"><div class="wrap"><div class="head"><div class="eyebrow">Stay updated</div><h2>News & Updates</h2></div><div id="newsList" class="grid3"></div></div></section>
+
+
+<section id="organizer"><div class="wrap"><div class="head"><div class="eyebrow">Organizer program</div><h2>Apply to host tournaments</h2><p class="muted">Login → apply → Playrex review → approved organizer access.</p></div>
+<div class="organizer">
+<div class="card" style="padding:25px"><h3>Step 1 — Sign in</h3><p class="muted">Use the demo Google sign-in to create your session.</p><button class="btn" onclick="openLogin()">Continue with Google</button><p id="loginState" class="muted"></p></div>
+<div class="card" style="padding:25px"><h3>Step 2 — Organizer application</h3><form class="form" onsubmit="apply(event)"><input id="name" class="input" placeholder="Organizer / Community Name" required><input id="email" class="input" type="email" placeholder="Email" required><input id="game" class="input" placeholder="Game you organize" required><textarea id="reason" class="input" placeholder="Tell us about your community" rows="4" required></textarea><button class="btn">Submit Application</button><div id="applyState" class="muted"></div></form></div>
+</div></div></section>
+
+
+<section id="faq"><div class="wrap"><div class="head"><div class="eyebrow">Help</div><h2>Frequently Asked Questions</h2></div><div class="faq">
+<details><summary>What is Playrex Network?</summary><p>A gaming community platform for players, tournaments and verified organizers.</p></details>
+<details><summary>How do I join a tournament?</summary><p>Choose an approved event from the Tournament Showcase and follow its registration details.</p></details>
+<details><summary>How can I become an organizer?</summary><p>Sign in and submit the organizer application for Playrex team review.</p></details>
+<details><summary>Who approves organizers?</summary><p>The Playrex team reviews each application and decides whether access is granted.</p></details>
+<details><summary>Can an unapproved organizer create tournaments?</summary><p>No. Tournament creation is available only after approval.</p></details>
+<details><summary>When does a tournament appear?</summary><p>In this demo, approving an organizer instantly creates a showcase tournament. A production backend would do this securely.</p></details>
+<details><summary>Which games are supported?</summary><p>ScarFall 2.0, Mobile Legends: Bang Bang, BGMI and Free Fire MAX are currently showcased.</p></details>
+<details><summary>Can Playrex publish news?</summary><p>Yes. The Admin Demo includes a simple news publishing flow.</p></details>
+<details><summary>Is Google login real here?</summary><p>No. It is a simulated login for the demo. Real Google OAuth needs a configured authentication provider.</p></details>
+<details><summary>Is my approval data stored?</summary><p>This demo uses your browser's localStorage. A production site should use a secure database with admin rules.</p></details>
+</div></div></section>
+
+
+<section id="admin"><div class="wrap"><div class="card admin" id="adminPanel" style="padding:25px"><div class="head"><div class="eyebrow">Phase 1 control room</div><h2>Playrex Admin</h2><p class="muted">Review organizer applications. Approving one immediately creates a tournament in the showcase for this demo.</p></div><div id="applications"></div><hr style="border-color:#ffffff10;margin:25px 0"><h3>Publish News / Update</h3><form class="form" onsubmit="addNews(event)"><input id="ntitle" class="input" placeholder="Headline" required><input id="ntag" class="input" placeholder="Category" required><textarea id="nbody" class="input" placeholder="Update text" rows="3" required></textarea><button class="btn">Publish Update</button></form></div></div></section>
+
+
+<div id="loginModal" class="modal"><div class="modalBox"><button class="close" onclick="closeLogin()">×</button><div class="eyebrow">Account</div><h2>Welcome to Playrex</h2><p class="muted">Demo login — choose how you want to enter.</p><div class="form"><button class="btn" onclick="playerLogin()">Continue with Google</button><button class="btn alt" onclick="organizerLogin()">Organizer Login</button></div><div id="loginMsg" class="muted" style="margin-top:14px"></div></div></div>
+<footer><div class="wrap">© 2026 Playrex Network • Demo Website</div></footer>
+
+<script>
+const get=(k,d)=>JSON.parse(localStorage.getItem(k)||JSON.stringify(d));
+const set=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let apps=get('px_apps',[]), tours=get('px_tours',[]), news=get('px_news',[
+{title:'Welcome to Playrex Network',tag:'Announcement',body:'The Playrex Network community is ready for competitive gaming, tournaments and events.'},
+{title:'Tournament Showcase is live',tag:'Tournament News',body:'Approved organizer events can be showcased for players.'}
+]);
+let session=get('px_session',null);
+
+function openLogin(){document.getElementById('loginModal').classList.add('open')}
+function closeLogin(){document.getElementById('loginModal').classList.remove('open')}
+function playerLogin(){session={role:'player',email:'player@demo.playrex'};set('px_session',session);document.getElementById('loginMsg').textContent='✓ Player login successful';document.getElementById('loginState').textContent='✓ Signed in as player.';setTimeout(closeLogin,500)}
+function organizerLogin(){session={role:'organizer',email:'organizer@demo.playrex'};set('px_session',session);document.getElementById('loginMsg').textContent='✓ Organizer login successful';document.getElementById('loginState').textContent='✓ Signed in as organizer. Submit your application below.';setTimeout(closeLogin,500)}
+function apply(e){
+ e.preventDefault();
+ if(!session){openLogin();document.getElementById('loginMsg').textContent='Please sign in first.';return}
+ if(apps.some(a=>a.email===email.value && a.status==='Pending')){applyState.textContent='Your application is already pending.';return}
+ apps.push({id:Date.now(),name:name.value,email:email.value,game:game.value,reason:reason.value,status:'Pending'});
+ set('px_apps',apps);applyState.textContent='✓ Submitted. Playrex team review is pending.';e.target.reset();renderAdmin();
+}
+function approve(id){
+ const a=apps.find(x=>x.id===id); if(!a)return;
+ a.status='Approved';
+ tours.push({id:Date.now(),title:a.name+' Tournament',game:a.game,organizer:a.name,status:'Approved',date:'Coming Soon',prize:'To be announced'});
+ set('px_apps',apps);set('px_tours',tours);renderAdmin();renderTournaments();
+ alert('Application approved — tournament added to Showcase.');
+}
+function reject(id){
+ const a=apps.find(x=>x.id===id); if(!a)return;
+ a.status='Rejected';set('px_apps',apps);renderAdmin();
+}
+function showAdmin(){
+ document.getElementById('adminPanel').classList.add('show');
+ document.getElementById('admin').scrollIntoView({behavior:'smooth'});
+ renderAdmin();
+}
+function renderAdmin(){
+ const box=document.getElementById('applications');
+ box.innerHTML=apps.length?apps.map(a=>`
+ <div class="card" style="padding:17px;margin:10px 0">
+ <b>${esc(a.name)}</b> <span class="badge">${a.status}</span>
+ <p class="muted">${esc(a.email)} • ${esc(a.game)}<br>${esc(a.reason)}</p>
+ ${a.status==='Pending'?`<div class="row"><button class="btn" onclick="approve(${a.id})">Approve</button><button class="btn alt" onclick="reject(${a.id})">Reject</button></div>`:''}
+ </div>`).join(''):'<p class="muted">No organizer applications yet.</p>';
+}
+function renderTournaments(){
+ document.getElementById('tournamentList').innerHTML=tours.length?tours.map(t=>`
+ <div class="card tour"><span class="badge">${esc(t.status)}</span><h3>${esc(t.title)}</h3>
+ <p class="muted">Organized by ${esc(t.organizer)}</p><div class="meta"><span>🎮 ${esc(t.game)}</span><span>📅 ${esc(t.date)}</span><span>💰 ${esc(t.prize)}</span></div></div>`).join(''):
+ `<div class="card tour"><h3>No approved tournaments yet</h3><p class="muted">Submit an application and approve it from Admin.</p></div>`;
+}
+function addNews(e){
+ e.preventDefault();news.unshift({title:ntitle.value,tag:ntag.value,body:nbody.value});
+ set('px_news',news);e.target.reset();renderNews();
+}
+function renderNews(){
+ document.getElementById('newsList').innerHTML=news.map(n=>`<div class="card news"><span class="badge">${esc(n.tag)}</span><h3>${esc(n.title)}</h3><p class="muted">${esc(n.body)}</p></div>`).join('');
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+if(session) document.getElementById('loginState').textContent='✓ Signed in as '+session.role+'.';
+renderTournaments();renderNews();renderAdmin();
+</script></body></html>
