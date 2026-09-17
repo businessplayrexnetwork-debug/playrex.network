@@ -51,6 +51,16 @@
 .btn:hover {
   transform: translateY(-3px);
   }
+ .scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style></head><body>
 <nav class="nav"><div class="wrap navin"><a class="brand" href="#"><img src="assets/IMG-20260914-WA0003.jpg">PLAYREX NETWORK</a><div class="navlinks"><a href="#games">Games</a><a href="#tournaments">Tournaments</a><a href="#news">News</a><a href="#organizer">Organizer</a><a href="#faq">FAQ</a></div><div class="row"><button class="btn alt" onclick="openLogin()">Login</button><button class="btn" onclick="showAdmin()">Admin</button></div></div></nav>
 
@@ -163,4 +173,16 @@ function renderNews(){
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 if(session) document.getElementById('loginState').textContent='✓ Signed in as '+session.role+'.';
 renderTournaments();renderNews();renderAdmin();
+ const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('section, .card, .stat').forEach(el => {
+  el.classList.add('scroll-animate');
+  observer.observe(el);
+});
 </script></body></html>
