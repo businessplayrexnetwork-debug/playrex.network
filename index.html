@@ -185,4 +185,7 @@ document.querySelectorAll('section, .card, .stat').forEach(el => {
   el.classList.add('scroll-animate');
   observer.observe(el);
 });
+ document.querySelectorAll('.card').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.12}s`;
+});
 </script></body></html>
