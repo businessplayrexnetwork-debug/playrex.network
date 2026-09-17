@@ -100,6 +100,238 @@
 .btn:active {
   transform: scale(.97);
  }
+ .nav {
+  animation: navDrop 0.8s ease-out;
+}
+
+@keyframes navDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav a {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav a:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+  }
+ body::before {
+  content: "";
+  position: fixed;
+  top: 15%;
+  left: -100px;
+  width: 220px;
+  height: 220px;
+  background: rgba(0, 255, 200, 0.08);
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -1;
+  animation: bgFloat 6s ease-in-out infinite;
+}
+ body {
+  animation: pageLoad 0.8s ease-out;
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+  }
+ .game-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.game-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalFade .3s ease;
+}
+
+.game-modal-box {
+  width: 100%;
+  max-width: 850px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #10151c;
+  border: 1px solid rgba(0,255,200,.25);
+  border-radius: 22px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.65);
+  padding: 24px;
+  position: relative;
+  animation: modalUp .35s ease;
+}
+
+.game-modal-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.game-modal h2 {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.game-modal p {
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.game-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.game-info {
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.game-info strong {
+  display: block;
+  margin-bottom: 5px;
+  opacity: .65;
+  font-size: 13px;
+}
+
+.game-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,.65);
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.card {
+  cursor: pointer;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .game-modal {
+    padding: 10px;
+  }
+
+  .game-modal-box {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .game-modal h2 {
+    font-size: 25px;
+  }
+
+  .game-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-modal-image {
+    max-height: 220px;
+  }
+ }
+
+@keyframes bgFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(80px, 100px);
+  }
+   }
+ @media (max-width: 600px) {
+  .wrap {
+    width: 92%;
+  }
+
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .heroGrid img {
+    width: 100%;
+    max-width: 380px;
+    margin: auto;
+  }
+
+  .card {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .stat {
+    padding: 15px 10px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+ }
+ <div id="gameModal" class="game-modal">
+  <div class="game-modal-box">
+    <button class="game-close" onclick="closeGameModal()">×</button>
+
+    <img id="modalImage" class="game-modal-image" src="" alt="Game">
+
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+
+    <div id="modalInfo" class="game-info-grid"></div>
+  </div>
+</div>
 </style></head><body>
 <nav class="nav"><div class="wrap navin"><a class="brand" href="#"><img src="assets/IMG-20260914-WA0003.jpg">PLAYREX NETWORK</a><div class="navlinks"><a href="#games">Games</a><a href="#tournaments">Tournaments</a><a href="#news">News</a><a href="#organizer">Organizer</a><a href="#faq">FAQ</a></div><div class="row"><button class="btn alt" onclick="openLogin()">Login</button><button class="btn" onclick="showAdmin()">Admin</button></div></div></nav>
 
@@ -226,5 +458,141 @@ document.querySelectorAll('section, .card, .stat').forEach(el => {
 });
  document.querySelectorAll('.card').forEach((el, i) => {
   el.style.transitionDelay = `${i * 0.12}s`;
+});
+ const gameDetails = {
+  "BGMI": {
+    image: "assets/HD-wallpaper-bgmi-youtube-banner-thumbnail-logo-ideas.jpg",
+    description: "Battlegrounds Mobile India is a mobile battle royale game built specifically for the Indian gaming community. Players compete in large-scale survival matches, collect weapons and equipment, and fight to become the last player or team standing.",
+    developer: "KRAFTON",
+    publisher: "KRAFTON India",
+    country: "South Korea / India-focused",
+    launch: "2 July 2021",
+    genre: "Battle Royale",
+    downloads: "260M accumulated downloads",
+    users: "Current MAU not publicly disclosed",
+    official: "KRAFTON India"
+  },
+
+  "ScarFall 2.0": {
+    image: "assets/maxresdefault.jpg",
+    description: "ScarFall 2.0 is a Made-in-India online multiplayer battle royale focused on real-time combat, squad strategy and fast-paced shooting. The game features Indian locations and competitive multiplayer gameplay.",
+    developer: "XSQUADS Tech Private Limited",
+    publisher: "Blast+ Games / Genesis Gaming Payments",
+    country: "India",
+    launch: "2025",
+    genre: "Battle Royale / Shooter",
+    downloads: "5M+ Google Play downloads",
+    users: "Current MAU not publicly disclosed",
+    official: "ScarFall.in"
+  },
+
+  "Mobile Legends": {
+    image: "assets/mobile-legends-cover.png",
+    description: "Mobile Legends: Bang Bang is a 5v5 multiplayer online battle arena game. Players select heroes, work with teammates and compete to destroy the opposing team's base.",
+    developer: "MOONTON Games",
+    publisher: "MOONTON Games",
+    country: "China",
+    launch: "2016",
+    genre: "MOBA",
+    downloads: "1.5B+ installations",
+    users: "110M+ monthly active users",
+    official: "MOONTON Games"
+  },
+
+  "Free Fire MAX": {
+    image: "assets/ff-banner.jpg",
+    description: "Free Fire MAX is the enhanced-specification version of Free Fire, offering the same core battle royale experience with improved graphics, effects and additional features such as Craftland.",
+    developer: "Garena",
+    publisher: "Garena",
+    country: "Singapore",
+    launch: "28 September 2021",
+    genre: "Battle Royale / Survival Shooter",
+    downloads: "500M+ Google Play downloads",
+    users: "100M+ daily active users reported for Free Fire; separate MAX MAU not publicly disclosed",
+    official: "Garena Free Fire"
+  }
+};
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", function(e) {
+
+    if (e.target.closest(".btn")) return;
+
+    const titleElement = card.querySelector("h2, h3, h4, .card-title");
+
+    if (!titleElement) return;
+
+    const title = titleElement.textContent.trim();
+
+    let game = null;
+
+    Object.keys(gameDetails).forEach(name => {
+      if (title.toLowerCase().includes(name.toLowerCase())) {
+        game = gameDetails[name];
+      }
+    });
+
+    if (!game) return;
+
+    document.getElementById("modalImage").src = game.image;
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalDescription").textContent = game.description;
+
+    document.getElementById("modalInfo").innerHTML = `
+      <div class="game-info">
+        <strong>Developer</strong>
+        ${game.developer}
+      </div>
+
+      <div class="game-info">
+        <strong>Publisher</strong>
+        ${game.publisher}
+      </div>
+
+      <div class="game-info">
+        <strong>Country</strong>
+        ${game.country}
+      </div>
+
+      <div class="game-info">
+        <strong>Launch</strong>
+        ${game.launch}
+      </div>
+
+      <div class="game-info">
+        <strong>Genre</strong>
+        ${game.genre}
+      </div>
+
+      <div class="game-info">
+        <strong>Downloads / Installs</strong>
+        ${game.downloads}
+      </div>
+
+      <div class="game-info">
+        <strong>Active Users</strong>
+        ${game.users}
+      </div>
+
+      <div class="game-info">
+        <strong>Official</strong>
+        ${game.official}
+      </div>
+    `;
+
+    document.getElementById("gameModal").classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+function closeGameModal() {
+  document.getElementById("gameModal").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("gameModal").addEventListener("click", function(e) {
+  if (e.target === this) {
+    closeGameModal();
+  }
 });
 </script></body></html>
