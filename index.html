@@ -320,6 +320,9 @@
     font-size: 36px;
   }
  }
+#player-dashboard{
+  display:none;
+}
  <div id="gameModal" class="game-modal">
   <div class="game-modal-box">
     <button class="game-close" onclick="closeGameModal()">×</button>
@@ -434,7 +437,145 @@
 <section id="organizer">
 
 
-<section id="organizer"><div class="wrap"><div class="head"><div class="eyebrow">Organizer program</div><h2>Apply to host tournaments</h2><p class="muted">Login → apply → Playrex review → approved organizer access.</p></div>
+<!-- PLAYER DASHBOARD -->
+<section id="player-dashboard">
+  <div class="wrap">
+
+    <div class="head scroll-animate from-left">
+      <div class="eyebrow">Player Zone</div>
+      <h2>Player Dashboard</h2>
+      <p class="muted">
+        Manage your PlayRex profile, tournaments and competitive progress.
+      </p>
+    </div>
+
+    <div class="grid3">
+
+      <!-- PROFILE -->
+      <div class="card scroll-animate from-left" style="padding:25px">
+        <div style="
+          width:65px;
+          height:65px;
+          border-radius:50%;
+          background:linear-gradient(135deg,#8b5cf6,#4c1d95);
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:28px;
+          font-weight:900;
+          margin-bottom:18px;
+        ">
+          P
+        </div>
+
+        <h3 id="dashboardPlayerName">PlayRex Player</h3>
+
+        <p class="muted" id="dashboardPlayerEmail">
+          player@demo.playrex
+        </p>
+
+        <span class="badge">PLAYER</span>
+      </div>
+
+      <!-- STATS -->
+      <div class="card scroll-animate from-bottom" style="padding:25px">
+
+        <h3>My Stats</h3>
+
+        <div style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:15px;
+          margin-top:20px;
+        ">
+
+          <div style="
+            padding:18px;
+            background:#ffffff05;
+            border:1px solid #ffffff0d;
+            border-radius:14px;
+          ">
+            <div class="muted" style="font-size:12px">
+              TOURNAMENTS
+            </div>
+            <strong style="font-size:25px">0</strong>
+          </div>
+
+          <div style="
+            padding:18px;
+            background:#ffffff05;
+            border:1px solid #ffffff0d;
+            border-radius:14px;
+          ">
+            <div class="muted" style="font-size:12px">
+              WINS
+            </div>
+            <strong style="font-size:25px">0</strong>
+          </div>
+
+          <div style="
+            padding:18px;
+            background:#ffffff05;
+            border:1px solid #ffffff0d;
+            border-radius:14px;
+          ">
+            <div class="muted" style="font-size:12px">
+              POINTS
+            </div>
+            <strong style="font-size:25px">0</strong>
+          </div>
+
+          <div style="
+            padding:18px;
+            background:#ffffff05;
+            border:1px solid #ffffff0d;
+            border-radius:14px;
+          ">
+            <div class="muted" style="font-size:12px">
+              RANK
+            </div>
+            <strong style="font-size:25px">—</strong>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- QUICK ACTIONS -->
+      <div class="card scroll-animate from-right" style="padding:25px">
+
+        <h3>Quick Actions</h3>
+
+        <div style="
+          display:flex;
+          flex-direction:column;
+          gap:12px;
+          margin-top:20px;
+        ">
+
+          <button class="btn"
+            onclick="document.getElementById('upcoming-tournaments').scrollIntoView({behavior:'smooth'})">
+            🏆 Find Tournaments
+          </button>
+
+          <button class="btn alt"
+            onclick="document.getElementById('community').scrollIntoView({behavior:'smooth'})">
+            👥 Explore Community
+          </button>
+
+          <button class="btn"
+            onclick="playerLogout()">
+            Logout
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+ <section id="organizer"><div class="wrap"><div class="head"><div class="eyebrow">Organizer program</div><h2>Apply to host tournaments</h2><p class="muted">Login → apply → Playrex review → approved organizer access.</p></div>
 <div class="organizer">
 <div class="card" style="padding:25px"><h3>Step 1 — Sign in</h3><p class="muted">Use the demo Google sign-in to create your session.</p><button class="btn" onclick="openLogin()">Continue with Google</button><p id="loginState" class="muted"></p></div>
 <div class="card" style="padding:25px"><h3>Step 2 — Organizer application</h3><form class="form" onsubmit="apply(event)"><input id="name" class="input" placeholder="Organizer / Community Name" required><input id="email" class="input" type="email" placeholder="Email" required><input id="game" class="input" placeholder="Game you organize" required><textarea id="reason" class="input" placeholder="Tell us about your community" rows="4" required></textarea><button class="btn">Submit Application</button><div id="applyState" class="muted"></div></form></div>
@@ -472,7 +613,50 @@ let session=get('px_session',null);
 
 function openLogin(){document.getElementById('loginModal').classList.add('open')}
 function closeLogin(){document.getElementById('loginModal').classList.remove('open')}
-function playerLogin(){session={role:'player',email:'player@demo.playrex'};set('px_session',session);document.getElementById('loginMsg').textContent='✓ Player login successful';document.getElementById('loginState').textContent='✓ Signed in as player.';setTimeout(closeLogin,500)}
+function playerLogin(){
+  session={
+    role:'player',
+    email:'player@demo.playrex',
+    name:'PlayRex Player'
+  };
+
+  set('px_session',session);
+
+  document.getElementById('loginMsg').textContent='✓ Player login successful';
+  document.getElementById('loginState').textContent='✓ Signed in as player.';
+
+  const dashboard=document.getElementById('player-dashboard');
+
+  if(dashboard){
+    dashboard.style.display='block';
+  }
+
+  setTimeout(closeLogin,500);
+
+  setTimeout(()=>{
+    dashboard?.scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+  },600);
+ }
+ function playerLogout(){
+  session=null;
+  localStorage.removeItem('px_session');
+
+  const dashboard=document.getElementById('player-dashboard');
+
+  if(dashboard){
+    dashboard.style.display='none';
+  }
+
+  alert('You have been logged out.');
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+ }
 function organizerLogin(){session={role:'organizer',email:'organizer@demo.playrex'};set('px_session',session);document.getElementById('loginMsg').textContent='✓ Organizer login successful';document.getElementById('loginState').textContent='✓ Signed in as organizer. Submit your application below.';setTimeout(closeLogin,500)}
 function apply(e){
  e.preventDefault();
@@ -672,5 +856,24 @@ document.getElementById("gameModal").addEventListener("click", function(e) {
   if (e.target === this) {
     closeGameModal();
   }
-});
+});if(session && session.role === 'player'){
+  const dashboard = document.getElementById('player-dashboard');
+
+  if(dashboard){
+    dashboard.style.display = 'block';
+  }
+ }
+ if(session && session.role === 'player'){
+  const nameEl = document.getElementById('dashboardPlayerName');
+  const emailEl = document.getElementById('dashboardPlayerEmail');
+
+  if(nameEl){
+    nameEl.textContent = session.name || 'PlayRex Player';
+  }
+
+  if(emailEl){
+    emailEl.textContent = session.email || 'player@demo.playrex';
+  }
+                        }
+ 
 </script></body></html>
